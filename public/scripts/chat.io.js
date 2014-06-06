@@ -12,7 +12,7 @@
 		currentRoom = null,
 
 		// server information
-		serverAddress = 'http://localhost',
+
 		serverDisplayName = 'Server',
 		serverDisplayColor = '#1c5380',
 
@@ -378,7 +378,7 @@
 		$('.chat-shadow .content').html('Connecting...');
 		
 		// creating the connection and saving the socket
-		socket = io.connect(serverAddress);
+		socket = io.connect(socketUrl);
 		
 		// now that we have the socket we can bind events to it
 		bindSocketEvents();

@@ -5,10 +5,10 @@ module.exports  = appolo.Controller.define({
 
     $config:{
         id: 'indexController',
-        inject: ['log']
+        inject: ['log','env']
     },
 
     index:function(req,res){
-        res.render("../../public/index.html");
+        res.render("../../public/chat.html",{locals:{socketUrl:this.env.socketUrl}});
     }
 });
