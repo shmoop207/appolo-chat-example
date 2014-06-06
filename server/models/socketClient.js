@@ -83,6 +83,9 @@ module.exports = EventDispatcher.define({
     },
 
     _onCacheMessagesLoad:function(room,messages){
+
+        messages.reverse();
+
         _.forEach(messages,function(msgData){
             this._socket.emit('chatmessage', { client: msgData.clientData, message: msgData.message, room: room });
         },this)
