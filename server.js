@@ -14,19 +14,11 @@ var express 	= require('express'),
 // listening to port...
 server.listen(port);
 
-// configure express, since this server is
-// also a web server, we need to define the
-// paths to the static files
-app.use("/styles", express.static(__dirname + '/public/styles'));
-app.use("/scripts", express.static(__dirname + '/public/scripts'));
-app.use("/images", express.static(__dirname + '/public/images'));
+
 
 // serving the main applicaion file (index.html)
 // when a client makes a request to the app root
 // (http://localhost:8080/)
-app.get('/', function (req, res) {
-	res.sendfile(__dirname + '/public/index.html');
-});
 
 // sets the log level of socket.io, with
 // log level 2 we wont see all the heartbits

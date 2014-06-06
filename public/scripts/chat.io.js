@@ -117,7 +117,7 @@
 		socket.on('connect', function(){
 			// firing back the connect event to the server
 			// and sending the nickname for the connected client
-			socket.emit('connect', { nickname: nickname });
+			socket.emit('nickname', { nickname: nickname });
 		});
 		
 		// after the server created a client for us, the ready event
@@ -168,6 +168,8 @@
 			setCurrentRoom(data.room);
 			
 			// announce a welcome message
+            $('.chat-messages ul').empty();
+
 			insertMessage(serverDisplayName, 'Welcome to the room: `' + data.room + '`... enjoy!', true, false, true);
 			$('.chat-clients ul').empty();
 			
