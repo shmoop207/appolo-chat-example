@@ -5,7 +5,7 @@ var appolo = require('appolo-express'),
 module.exports = appolo.Class.define({
 
     $config: {
-        id: 'roomManager',
+        id: 'roomsManager',
         initMethod: 'initialize',
         singleton: true,
         inject: ['log', 'io']

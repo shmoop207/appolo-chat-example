@@ -8,7 +8,7 @@ module.exports = EventDispatcher.define({
     $config: {
         id: 'socketClient',
         initMethod: 'initialize',
-        inject: ['log', 'redis', 'io', 'roomManager','cacheProvider']
+        inject: ['log', 'redis', 'io', 'roomsManager','cacheProvider']
     },
 
     constructor: function (socket) {
@@ -41,7 +41,7 @@ module.exports = EventDispatcher.define({
 
         this._subscribe({ room: 'lobby' });
 
-        this._socket.emit('roomslist', { rooms: this.roomManager.getRoomsList() });
+        this._socket.emit('roomslist', { rooms: this.roomsManager.getRoomsList() });
     },
 
     getId: function () {
@@ -60,7 +60,7 @@ module.exports = EventDispatcher.define({
 
     _subscribe: function (data) {
 
-        this.roomManager.addClientToRoom(data.room, this);
+        this.roomsManager.addClientToRoom(data.room, this);
 
         // subscribe the client to the room
         this._socket.join(data.room);
@@ -70,7 +70,7 @@ module.exports = EventDispatcher.define({
 
         // send to the client a list of all subscribed clients in this room
         var clients = [];
-        _.forEach(this.roomManager.getClientsInRoom(data.room), function (client) {
+        _.forEach(this.roomsManager.getClientsInRoom(data.room), function (client) {
             if (client.getId() != this._id) {
                 clients.push(client.clientData)
             }
@@ -96,13 +96,13 @@ module.exports = EventDispatcher.define({
         // remove the client from socket.io room
         this._socket.leave(data.room);
 
-        this.roomManager.removeClientFromRoom(data.room, this);
+        this.roomsManager.removeClientFromRoom(data.room, this);
 
     },
 
     _disconnect: function (data) {
 
-        _.forEach(this.roomManager.getRoomsByClientId(this._id), function (roomName) {
+        _.forEach(this.roomsManager.getRoomsByClientId(this._id), function (roomName) {
             this._unSubscribe({ room: roomName });
         }, this);
 
