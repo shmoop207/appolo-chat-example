@@ -18,9 +18,6 @@ module.exports = EventDispatcher.define({
         this.clientData = {
             clientId :this._id
         };
-
-        this.rooms = {};
-
     },
 
     initialize: function () {
