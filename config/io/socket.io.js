@@ -14,7 +14,7 @@ var sub = redis.createClient(redisURL.port, redisURL.hostname);
 //connect to app server
 var io = sio.listen(appolo.launcher.app.server);
 
-io.adapter(redisIo({ host: redisURL.hostname, port: redisURL.port,pubClient:pub,subClient:sub }));
+io.adapter(redisIo({ host: redisURL.hostname, port: redisURL.port}));
 
 // sets the log level of socket.io, with
 // log level 2 we wont see all the heartbits
