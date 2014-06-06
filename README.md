@@ -3,7 +3,7 @@ Multi-Room Chat Application
 
 - This application created as part of a [appolo-express][1], node.js and socket.io tutorial.
 - the server is written in node.js with [appolo-express][2] framework
-- the client is written by [@uditalia][3] froked from https://github.com/uditalias/chat-nodejs
+- the client is written by [@uditalias][3] froked from https://github.com/uditalias/chat-nodejs
 
 ### To run:
 
