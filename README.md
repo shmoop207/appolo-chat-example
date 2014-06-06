@@ -1,11 +1,9 @@
 Multi-Room Chat Application
 ===
 
-This application created as part of a node.js and socket.io tutorial.
-It includes a server built in node.js and a html client.
-
-You can read the full tutorial at:
-http://udidu.blogspot.com/2012/11/chat-evolution-nodejs-and-socketio.html
+- This application created as part of a [appolo-express][1], node.js and socket.io tutorial.
+- the server is written in node.js with [appolo-express][2] framework
+- the client is written by [@uditalias][3] froked from https://github.com/uditalias/chat-nodejs
 
 ### To run:
 
@@ -13,7 +11,7 @@ Please be sure you have expressjs and socket.io modules installed before running
 
 On Windows/Mac/Linux:
 
-	$ node server.js
+	$ node app.js
 	
 After running go to this address:
 
@@ -24,7 +22,7 @@ After running go to this address:
 
 For a live demo go to:
 
-	http://uditalias.github.com/chat-nodejs/public
+http://appolo-chat-example.herokuapp.com/
 	
 
 	
@@ -42,3 +40,8 @@ This application uses the following:
 - Private chat with users
 	
 ###Enjoy!
+
+
+  [1]: https://github.com/shmoop207/appolo-express
+  [2]: https://github.com/shmoop207/appolo-express
+  [3]: https://github.com/uditalias
