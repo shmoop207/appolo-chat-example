@@ -38,6 +38,7 @@ module.exports = appolo.Class.define({
 
             if (_.keys(this._rooms[room]).length == 0) {
                 this.io.sockets.emit('removeroom', { room: room });
+                delete this._rooms[room];
             }
         }
     },
