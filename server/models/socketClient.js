@@ -83,9 +83,12 @@ module.exports = EventDispatcher.define({
 
         messages.reverse();
 
-        _.forEach(messages,function(msgData){
-            this._socket.emit('chatmessage', { client: msgData.clientData, message: msgData.message, room: room });
+        var output = _.map(messages,function(msgData){
+
+            return { client: msgData.clientData, message: msgData.message, room: room }
         },this)
+
+        this._socket.emit('roomChatMessages', output);
     },
 
     _unSubscribe: function (data) {

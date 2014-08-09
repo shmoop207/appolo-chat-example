@@ -154,8 +154,17 @@
 			var message = data.message;
 			
 			//display the message in the chat window
-			insertMessage(nickname, message, true, false, false);
+			insertMessage(nickname, message, false, false, false,true);
 		});
+
+        socket.on('roomChatMessages',function(data){
+            for(var i = 0, len = data.length; i < len; i++){
+
+                insertMessage(data[i].client.nickname, data[i].message, false, false, false,true);
+
+            }
+            $('.chat-messages').animate({ scrollTop: $('.chat-messages ul').height() }, 100);
+        });
 		
 		// when we subscribes to a room, the server sends a list
 		// with the clients in this room
@@ -170,7 +179,7 @@
 			// announce a welcome message
             $('.chat-messages ul').empty();
 
-			insertMessage(serverDisplayName, 'Welcome to the room: `' + data.room + '`... enjoy!', true, false, true);
+			insertMessage(serverDisplayName, 'Welcome to the room: `' + data.room + '`... enjoy!', true, false, true,true);
 			$('.chat-clients ul').empty();
 			
 			// add the clients to the clients list
@@ -222,7 +231,7 @@
 			$.tmpl(tmplt.room, { room: name }).appendTo('.chat-rooms ul');
 			// if announce is true, show a message about this room
 			if(announce){
-				insertMessage(serverDisplayName, 'The room `' + name + '` created...', true, false, true);
+				insertMessage(serverDisplayName, 'The room `' + name + '` created...', true, false, true,true);
 			}
 		}
 	}
@@ -232,7 +241,7 @@
 		$('.chat-rooms ul li[data-roomId="' + name + '"]').remove();
 		// if announce is true, show a message about this room
 		if(announce){
-			insertMessage(serverDisplayName, 'The room `' + name + '` destroyed...', true, false, true);
+			insertMessage(serverDisplayName, 'The room `' + name + '` destroyed...', true, false, true,true);
 		}
 	}
 
@@ -247,7 +256,7 @@
 
 		// if announce is true, show a message about this client
 		if(announce){
-			insertMessage(serverDisplayName, client.nickname + ' has joined the room...', true, false, true);
+			insertMessage(serverDisplayName, client.nickname + ' has joined the room...', true, false, true,true);
 		}
 		$html.appendTo('.chat-clients ul')
 	}
@@ -258,7 +267,7 @@
 		
 		// if announce is true, show a message about this room
 		if(announce){
-			insertMessage(serverDisplayName, client.nickname + ' has left the room...', true, false, true);
+			insertMessage(serverDisplayName, client.nickname + ' has left the room...', true, false, true,true);
 		}
 	}
 
@@ -318,7 +327,7 @@
 			socket.emit('chatmessage', { message: message, room: currentRoom });
 			
 			// display the message in the chat window
-			insertMessage(nickname, message, true, true);
+			insertMessage(nickname, message, true, true,false,true);
 			$('.chat-input input').val('');
 		} else {
 			shake('.chat', '.chat input', 'wobble', 'yellow');
@@ -327,7 +336,7 @@
 
 	// insert a message to the chat window, this function can be
 	// called with some flags
-	function insertMessage(sender, message, showTime, isMe, isServer){
+	function insertMessage(sender, message, showTime, isMe, isServer,animate){
 		var $html = $.tmpl(tmplt.message, {
 			sender: sender,
 			text: message,
@@ -346,7 +355,11 @@
 			$html.find('.sender').css('color', serverDisplayColor);
 		}
 		$html.appendTo('.chat-messages ul');
-		$('.chat-messages').animate({ scrollTop: $('.chat-messages ul').height() }, 100);
+
+        if(animate){
+            $('.chat-messages').animate({ scrollTop: $('.chat-messages ul').height() }, 100);
+        }
+
 	}
 
 	// return a short time format for the messages
