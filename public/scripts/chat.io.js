@@ -357,7 +357,7 @@
 		$html.appendTo('.chat-messages ul');
 
         if(animate){
-            $('.chat-messages').animate({ scrollTop: $('.chat-messages ul').height() }, 100);
+            $('.chat-messages').animate({ scrollTop: $('.chat-messages ul').height() }, 10);
         }
 
 	}

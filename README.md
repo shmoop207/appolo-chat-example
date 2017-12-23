@@ -1,8 +1,8 @@
 Multi-Room Chat Application
 ===
 
-- This application created as part of a [appolo-express][1], node.js and socket.io tutorial.
-- the server is written in node.js with [appolo-express][2] framework
+- This application created as part of a [appolo-http][1], node.js and socket.io tutorial.
+- the server is written in node.js with [appolo-http][2] framework
 - the client is written by [@uditalias][3] froked from https://github.com/uditalias/chat-nodejs
 
 ### To run:
@@ -41,6 +41,6 @@ This application uses the following:
 ###Enjoy!
 
 
-  [1]: https://github.com/shmoop207/appolo-express
-  [2]: https://github.com/shmoop207/appolo-express
+  [1]: https://github.com/shmoop207/appolo-http
+  [2]: https://github.com/shmoop207/appolo-http
   [3]: https://github.com/uditalias
