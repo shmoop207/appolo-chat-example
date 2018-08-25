@@ -1,11 +1,11 @@
 "use strict";
-import appolo  = require('appolo-http');
+import {createApp} from 'appolo';
 
 (async function init() {
 
     try {
 
-        await appolo.launch();
+        await createApp().launch();
 
     } catch (e) {
         console.error("failed to launch ", e.stack);

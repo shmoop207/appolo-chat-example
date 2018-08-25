@@ -1,13 +1,13 @@
 
-import    appolo = require('appolo-http');
+import    {App,Injector} from "appolo";
 import    redis=require("redis");
-import {LoggerInstance} from "winston";
-import {IEnv} from "../../environments/IEnv";
+import {Logger} from "winston";
+import {IEnv} from "../../env/IEnv";
 
 
 export = function () {
 
-    return function (env:IEnv,injector: appolo.Injector,logger:LoggerInstance) {
+    return function (env:IEnv,injector: Injector,logger:Logger) {
 
         return new Promise((resolve, reject) => {
             let client = redis.createClient(env.redis);

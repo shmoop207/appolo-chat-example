@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const appolo = require("appolo-http");
+const appolo_1 = require("appolo");
 let ClientsManager = class ClientsManager {
     constructor() {
         this._clients = {};
@@ -25,17 +25,17 @@ let ClientsManager = class ClientsManager {
     }
 };
 tslib_1.__decorate([
-    appolo.inject()
+    appolo_1.inject()
 ], ClientsManager.prototype, "io", void 0);
 tslib_1.__decorate([
-    appolo.injectFactoryMethod("socketClient")
+    appolo_1.injectFactoryMethod("socketClient")
 ], ClientsManager.prototype, "createSocketClient", void 0);
 tslib_1.__decorate([
-    appolo.initMethod()
+    appolo_1.initMethod()
 ], ClientsManager.prototype, "initialize", null);
 ClientsManager = tslib_1.__decorate([
-    appolo.define(),
-    appolo.singleton()
+    appolo_1.define(),
+    appolo_1.singleton()
 ], ClientsManager);
 exports.ClientsManager = ClientsManager;
 //# sourceMappingURL=clientsManager.js.map

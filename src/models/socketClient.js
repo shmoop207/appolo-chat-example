@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const appolo = require("appolo-http");
+const appolo_1 = require("appolo");
 const _ = require("lodash");
-let SocketClient = class SocketClient extends appolo.EventDispatcher {
+let SocketClient = class SocketClient extends appolo_1.EventDispatcher {
     constructor(socket) {
         super();
         this._socket = socket;
@@ -89,16 +89,16 @@ let SocketClient = class SocketClient extends appolo.EventDispatcher {
     }
 };
 tslib_1.__decorate([
-    appolo.inject()
+    appolo_1.inject()
 ], SocketClient.prototype, "roomsManager", void 0);
 tslib_1.__decorate([
-    appolo.inject()
+    appolo_1.inject()
 ], SocketClient.prototype, "cacheProvider", void 0);
 tslib_1.__decorate([
-    appolo.initMethod()
+    appolo_1.initMethod()
 ], SocketClient.prototype, "initialize", null);
 SocketClient = tslib_1.__decorate([
-    appolo.define()
+    appolo_1.define()
 ], SocketClient);
 exports.SocketClient = SocketClient;
 //# sourceMappingURL=socketClient.js.map

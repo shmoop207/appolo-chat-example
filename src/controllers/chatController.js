@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const appolo = require("appolo-http");
-let ChatController = class ChatController extends appolo.Controller {
+const appolo_1 = require("appolo");
+let ChatController = class ChatController extends appolo_1.Controller {
     getMessages(req, res) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
             try {
@@ -16,13 +16,13 @@ let ChatController = class ChatController extends appolo.Controller {
     }
 };
 tslib_1.__decorate([
-    appolo.inject()
+    appolo_1.inject()
 ], ChatController.prototype, "cacheProvider", void 0);
 tslib_1.__decorate([
-    appolo.pathGet("/chat/:room/messages/")
+    appolo_1.get("/chat/:room/messages/")
 ], ChatController.prototype, "getMessages", null);
 ChatController = tslib_1.__decorate([
-    appolo.define()
+    appolo_1.controller()
 ], ChatController);
 exports.ChatController = ChatController;
 //# sourceMappingURL=chatController.js.map

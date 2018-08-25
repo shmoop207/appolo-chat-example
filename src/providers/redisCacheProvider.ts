@@ -1,20 +1,20 @@
 "use strict";
-import appolo = require('appolo-http');
+import {define,singleton,inject} from 'appolo';
 import    Q = require('bluebird');
 import    _ = require('lodash');
 import {RedisClient} from "redis";
-import {IEnv} from "../../config/environments/IEnv";
-import {LoggerInstance} from "winston";
+import {IEnv} from "../../config/env/IEnv";
+import {Logger} from "winston";
 import {IClientData} from "../models/IClientData";
 import {ICacheProvider} from "./ICacheProvider";
 
-@appolo.define()
-@appolo.singleton()
+@define()
+@singleton()
 export class RedisCacheProvider implements ICacheProvider{
 
-    @appolo.inject() redis:RedisClient;
-    @appolo.inject() logger:LoggerInstance;
-    @appolo.inject() env:IEnv;
+    @inject() redis:RedisClient;
+    @inject() logger:Logger;
+    @inject() env:IEnv;
 
     public async addMessageToCache (room:string, clientData:IClientData, message:string):Promise<void> {
 

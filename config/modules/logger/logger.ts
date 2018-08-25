@@ -1,23 +1,23 @@
-import {IEnv} from "../../environments/IEnv";
+import {IEnv} from "../../env/IEnv";
 
 import winston = require('winston');
-import    appolo = require('appolo-http');
+import    {App,Injector} from "appolo";
 
 
 export = function () {
 
-    return function (env:IEnv,injector: appolo.Injector) {
-        let transports = [];
-        transports.push(new (winston.transports.Console)({
-            json: true,
-            timestamp: true,
-            handleExceptions: true
-        }));
+    return function (env:IEnv,injector: Injector) {
+        const logger = winston.createLogger({
+            level: 'info',
+            format: winston.format.json(),
+            transports: [
 
-        var logger = new (winston.Logger)({
-            transports: transports,
-            exitOnError: false
+            ]
         });
+
+        logger.add(new winston.transports.Console({
+            format: winston.format.simple()
+        }));
 
         injector.addObject('logger', logger);
 

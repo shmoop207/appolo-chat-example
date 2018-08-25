@@ -1,24 +1,27 @@
 "use strict";
-import appolo = require('appolo-http');
+import {define,singleton,inject,EventDispatcher,initMethod} from 'appolo';
 import    _ = require('lodash');
 import {IClientData} from "./IClientData";
 import {RoomsManager} from "../managers/roomsManager";
 import {IMessage} from "./IMessage";
+import {Socket} from "socket.io";
 import {ICacheProvider} from "../providers/ICacheProvider";
 
-@appolo.define()
-export class SocketClient extends appolo.EventDispatcher {
+@define()
+export class SocketClient extends EventDispatcher {
 
 
 
-    private _socket: SocketIO.Socket;
+    private _socket: Socket;
     private _id: string;
     private _clientData: IClientData;
-    @appolo.inject() private roomsManager: RoomsManager;
-    @appolo.inject() private cacheProvider: ICacheProvider;
+
+    @inject() private roomsManager: RoomsManager;
+
+    @inject() private cacheProvider: ICacheProvider;
 
 
-    constructor(socket: SocketIO.Socket) {
+    constructor(socket: Socket) {
         super();
         this._socket = socket;
         this._id = _.uniqueId();
@@ -28,7 +31,7 @@ export class SocketClient extends appolo.EventDispatcher {
         };
     }
 
-    @appolo.initMethod()
+    @initMethod()
     public initialize() {
 
         this._socket.on('nickname', this._onNickname.bind(this));

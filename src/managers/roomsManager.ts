@@ -1,16 +1,16 @@
 "use strict";
-import appolo = require('appolo-http');
+import {define,singleton,inject,EventDispatcher,initMethod} from 'appolo';
 import    _ = require('lodash');
-import    * as socketIo  from "socket.io"
+import   {Server}  from "socket.io"
 import {SocketClient} from "../models/socketClient";
 
 
-@appolo.define()
-@appolo.singleton()
+@define()
+@singleton()
 export class RoomsManager{
 
 
-    @appolo.inject() private io:SocketIO.Server;
+    @inject() private io:Server;
 
     private _rooms:{[index:string]:{[index:string]:SocketClient}};
 

@@ -1,23 +1,14 @@
 "use strict";
-import appolo = require('appolo-http');
+import {define,singleton,inject,initMethod,injectFactoryMethod} from 'appolo';
 import {SocketClient} from "../models/socketClient";
+import   {Server,Socket}  from "socket.io"
 
-@appolo.define()
-@appolo.singleton()
+@define()
+@singleton()
 export class ClientsManager{
-    // $config: {
-    //     id: 'clientsManager',
-    //     initMethod: 'initialize',
-    //     singleton: true,
-    //     inject: ['log','io'],
-    //     properties:[{
-    //         name:'createSocketClient',
-    //         factoryMethod:'socketClient'
-    //     }]
-    // },
 
-    @appolo.inject() private io:SocketIO.Server;
-    @appolo.injectFactoryMethod("socketClient") private createSocketClient:(socket:SocketIO.Socket)=>SocketClient;
+    @inject() private io:Server;
+    @injectFactoryMethod("socketClient") private createSocketClient:(socket:Socket)=>SocketClient;
 
 
     private _clients:{[index:string]:SocketClient};
@@ -26,7 +17,7 @@ export class ClientsManager{
         this._clients = {};
     }
 
-    @appolo.initMethod()
+    @initMethod()
     public initialize () {
 
         this.io.sockets.on('connection', this._onSocketConnection.bind(this));

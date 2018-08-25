@@ -2,16 +2,14 @@
 const winston = require("winston");
 module.exports = function () {
     return function (env, injector) {
-        let transports = [];
-        transports.push(new (winston.transports.Console)({
-            json: true,
-            timestamp: true,
-            handleExceptions: true
-        }));
-        var logger = new (winston.Logger)({
-            transports: transports,
-            exitOnError: false
+        const logger = winston.createLogger({
+            level: 'info',
+            format: winston.format.json(),
+            transports: []
         });
+        logger.add(new winston.transports.Console({
+            format: winston.format.simple()
+        }));
         injector.addObject('logger', logger);
     };
 };

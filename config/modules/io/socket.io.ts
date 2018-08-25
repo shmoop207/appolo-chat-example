@@ -1,20 +1,19 @@
 import sio = require('socket.io');
-import    appolo = require('appolo-http');
+import    {App,Injector} from "appolo";
 import    redisIo = require('socket.io-redis');
 import    url = require('url');
-import {IEnv} from "../../environments/IEnv";
+import {IEnv} from "../../env/IEnv";
 import  http = require('http');
 
 export = function () {
 
-    return function (env:IEnv,injector: appolo.Injector, httpServer: http.Server) {
-        let redisURL = url.parse(env.redis);
+    return function (app:App,env:IEnv,injector: Injector, httpServer: http.Server) {
 
-        let io = sio.listen(httpServer);
+        let io = sio.listen(app.server);
 
-        io.adapter(redisIo({ host: redisURL.hostname, port: redisURL.port}));
+        io.adapter(redisIo(env.redis));
 
-        appolo.injector.addObject('io', io);
+        injector.addObject('io', io);
 
     }
 }
