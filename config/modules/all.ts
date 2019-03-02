@@ -1,11 +1,14 @@
 import    {App} from "appolo";
-import    logger = require('./logger/logger');
-import    socketIo = require('./io/socket.io');
-import    redis = require('./redis/redis');
+import    {LoggerModule} from "@appolo/logger";
+import    {ViewModule,ViewEngines} from "@appolo/view";
+import    {SocketModule} from "@appolo/socket";
+import    {RedisModule} from "@appolo/redis";
+import {IEnv} from "../env/IEnv";
 
 
-export = async function (app:App) {
-    await app.module(logger());
-    await app.module(redis());
-    await app.module(socketIo());
+export = async function (app:App,env:IEnv) {
+    await app.module(LoggerModule);
+    await app.module(new ViewModule({viewEngine:ViewEngines.nunjucks}));
+    await app.module(new SocketModule({redis:env.redis}));
+    await app.module(new RedisModule({connection:env.redis}));
 }

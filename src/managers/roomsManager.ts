@@ -1,8 +1,8 @@
 "use strict";
 import {define,singleton,inject,EventDispatcher,initMethod} from 'appolo';
 import    _ = require('lodash');
-import   {Server}  from "socket.io"
-import {SocketClient} from "../models/socketClient";
+import   {SocketProvider}  from "@appolo/socket"
+import {ChatSocketController} from "../controllers/chatSocketController";
 
 
 @define()
@@ -10,9 +10,9 @@ import {SocketClient} from "../models/socketClient";
 export class RoomsManager{
 
 
-    @inject() private io:Server;
+    @inject() private socketProvider:SocketProvider;
 
-    private _rooms:{[index:string]:{[index:string]:SocketClient}};
+    private _rooms:{[index:string]:{[index:string]:ChatSocketController}};
 
     constructor () {
         this._rooms = {};
@@ -22,24 +22,24 @@ export class RoomsManager{
 
     }
 
-    public addClientToRoom (room:string, client:SocketClient) {
+    public addClientToRoom (room:string, client:ChatSocketController) {
         if (!this._rooms[room]) {
 
             this._rooms[room] = {};
 
-            this.io.sockets.emit('addroom', { room: room });
+            this.socketProvider.sendToAll('addroom', { room: room });
         }
 
-        this._rooms[room][client.getId()] = client;
+        this._rooms[room][client.id] = client;
 
     }
 
-    public removeClientFromRoom (room:string, client:SocketClient) {
+    public removeClientFromRoom (room:string, client:ChatSocketController) {
         if (this._rooms[room]) {
-            delete this._rooms[room][client.getId()];
+            delete this._rooms[room][client.id];
 
             if (_.keys(this._rooms[room]).length == 0) {
-                this.io.sockets.emit('removeroom', { room: room });
+                this.socketProvider.sendToAll('removeroom', { room: room });
                 delete this._rooms[room];
             }
         }

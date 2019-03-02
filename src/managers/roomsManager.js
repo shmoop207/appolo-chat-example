@@ -12,15 +12,15 @@ let RoomsManager = class RoomsManager {
     addClientToRoom(room, client) {
         if (!this._rooms[room]) {
             this._rooms[room] = {};
-            this.io.sockets.emit('addroom', { room: room });
+            this.socketProvider.sendToAll('addroom', { room: room });
         }
-        this._rooms[room][client.getId()] = client;
+        this._rooms[room][client.id] = client;
     }
     removeClientFromRoom(room, client) {
         if (this._rooms[room]) {
-            delete this._rooms[room][client.getId()];
+            delete this._rooms[room][client.id];
             if (_.keys(this._rooms[room]).length == 0) {
-                this.io.sockets.emit('removeroom', { room: room });
+                this.socketProvider.sendToAll('removeroom', { room: room });
                 delete this._rooms[room];
             }
         }
@@ -41,7 +41,7 @@ let RoomsManager = class RoomsManager {
 };
 tslib_1.__decorate([
     appolo_1.inject()
-], RoomsManager.prototype, "io", void 0);
+], RoomsManager.prototype, "socketProvider", void 0);
 RoomsManager = tslib_1.__decorate([
     appolo_1.define(),
     appolo_1.singleton()
