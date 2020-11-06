@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.RedisCacheProvider = void 0;
 const tslib_1 = require("tslib");
-const appolo_1 = require("appolo");
+const inject_1 = require("@appolo/inject");
 const _ = require("lodash");
 let RedisCacheProvider = class RedisCacheProvider {
     addMessageToCache(room, clientData, message) {
@@ -29,17 +30,17 @@ let RedisCacheProvider = class RedisCacheProvider {
     }
 };
 tslib_1.__decorate([
-    appolo_1.inject()
+    inject_1.inject()
 ], RedisCacheProvider.prototype, "redisProvider", void 0);
 tslib_1.__decorate([
-    appolo_1.inject()
+    inject_1.inject()
 ], RedisCacheProvider.prototype, "logger", void 0);
 tslib_1.__decorate([
-    appolo_1.inject()
+    inject_1.inject()
 ], RedisCacheProvider.prototype, "env", void 0);
 RedisCacheProvider = tslib_1.__decorate([
-    appolo_1.define(),
-    appolo_1.singleton()
+    inject_1.define(),
+    inject_1.singleton()
 ], RedisCacheProvider);
 exports.RedisCacheProvider = RedisCacheProvider;
 //# sourceMappingURL=redisCacheProvider.js.map

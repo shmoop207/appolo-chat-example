@@ -1,5 +1,6 @@
 "use strict";
-import {controller, Controller, get, inject, IRequest, IResponse} from 'appolo';
+import {controller, Controller, get, IRequest, IResponse} from '@appolo/route';
+import {inject} from '@appolo/inject';
 import {view} from '@appolo/view';
 import {IEnv} from "../../config/env/IEnv";
 

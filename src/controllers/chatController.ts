@@ -1,22 +1,19 @@
 "use strict";
-import {controller, Controller, get, inject, IRequest, IResponse} from 'appolo';
+import {controller, Controller, get, IRequest, IResponse, params} from '@appolo/route';
+import {inject} from '@appolo/inject';
 import {IEnv} from "../../config/env/IEnv";
 import {ICacheProvider} from "../providers/ICacheProvider";
 
 @controller()
 export class ChatController extends Controller {
-    @inject() private cacheProvider:ICacheProvider;
+    @inject() private cacheProvider: ICacheProvider;
 
     @get("/chat/:room/messages/")
-    public async getMessages(req: IRequest, res: IResponse) {
+    public async getMessages(@params("room") room: string) {
 
-        try{
-            let messages = await this.cacheProvider.getMessagesFromCache(req.params["room"]);
-            this.sendOk(messages);
-        }catch (e){
-           this.sendError(e);
-        }
+        let messages = await this.cacheProvider.getMessagesFromCache(room);
 
+        return messages
 
     }
 }

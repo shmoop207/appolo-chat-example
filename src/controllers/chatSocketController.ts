@@ -1,5 +1,5 @@
 "use strict";
-import {define,singleton,inject,EventDispatcher,initMethod} from 'appolo';
+import {inject} from '@appolo/inject';
 import {SocketController,socket,action} from '@appolo/socket';
 import    _ = require('lodash');
 import {IClientData} from "../models/IClientData";

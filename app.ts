@@ -1,5 +1,5 @@
 "use strict";
-import {createApp} from 'appolo';
+import {createApp} from '@appolo/core';
 
 (async function init() {
 

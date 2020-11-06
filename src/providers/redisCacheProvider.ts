@@ -1,5 +1,5 @@
 "use strict";
-import {define,singleton,inject} from 'appolo';
+import {define,singleton,inject} from '@appolo/inject';
 import {RedisProvider} from '@appolo/redis';
 import    Q = require('bluebird');
 import    _ = require('lodash');

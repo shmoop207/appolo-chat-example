@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ChatSocketController = void 0;
 const tslib_1 = require("tslib");
-const appolo_1 = require("appolo");
+const inject_1 = require("@appolo/inject");
 const socket_1 = require("@appolo/socket");
 const _ = require("lodash");
 let ChatSocketController = class ChatSocketController extends socket_1.SocketController {
@@ -78,10 +79,10 @@ let ChatSocketController = class ChatSocketController extends socket_1.SocketCon
     }
 };
 tslib_1.__decorate([
-    appolo_1.inject()
+    inject_1.inject()
 ], ChatSocketController.prototype, "roomsManager", void 0);
 tslib_1.__decorate([
-    appolo_1.inject()
+    inject_1.inject()
 ], ChatSocketController.prototype, "cacheProvider", void 0);
 tslib_1.__decorate([
     socket_1.action("nickname")

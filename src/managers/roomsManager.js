@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.RoomsManager = void 0;
 const tslib_1 = require("tslib");
-const appolo_1 = require("appolo");
+const inject_1 = require("@appolo/inject");
 const _ = require("lodash");
 let RoomsManager = class RoomsManager {
     constructor() {
@@ -40,11 +41,11 @@ let RoomsManager = class RoomsManager {
     }
 };
 tslib_1.__decorate([
-    appolo_1.inject()
+    inject_1.inject()
 ], RoomsManager.prototype, "socketProvider", void 0);
 RoomsManager = tslib_1.__decorate([
-    appolo_1.define(),
-    appolo_1.singleton()
+    inject_1.define(),
+    inject_1.singleton()
 ], RoomsManager);
 exports.RoomsManager = RoomsManager;
 //# sourceMappingURL=roomsManager.js.map

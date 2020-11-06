@@ -1,5 +1,5 @@
 "use strict";
-import {define,singleton,inject,EventDispatcher,initMethod} from 'appolo';
+import {define,singleton,inject} from '@appolo/inject';
 import    _ = require('lodash');
 import   {SocketProvider}  from "@appolo/socket"
 import {ChatSocketController} from "../controllers/chatSocketController";
