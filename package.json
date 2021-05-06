@@ -17,7 +17,7 @@
         "@appolo/core": "^8.0.5",
         "bluebird": "^3.7.2",
         "consolidate": "^0.16.0",
-        "lodash": "^4.17.20",
+        "lodash": "^4.17.21",
         "nunjucks": "^3.2.2",
         "serve-static": "^1.14.1",
         "socket.io": "^3.0.0",
